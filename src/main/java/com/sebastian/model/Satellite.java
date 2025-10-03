@@ -39,7 +39,7 @@ public class Satellite {
      * @param rad la radiacion que se va a agregar. 
      */
     public void addRadiationMeasurement(double rad){
-        radiationHistory.add(rad);
+        radiationHistory.addFirst(rad);
     }
 
     
