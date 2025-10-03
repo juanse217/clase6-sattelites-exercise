@@ -10,5 +10,6 @@ public class Main {
         ISatelliteRepository repo = new SatelliteRepositoryImpl();
         SatelliteService service = new SatelliteService(repo);
         Menu menu = new Menu(service);
+        menu.showMenu();
     }
 }

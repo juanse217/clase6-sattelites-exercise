@@ -55,8 +55,10 @@ public class Menu {
             }
 
             id = null;
-            sc.close();
+            
         }while(decision < 6);
+
+        sc.close();
 
     }
 }
