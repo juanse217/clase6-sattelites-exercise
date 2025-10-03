@@ -32,6 +32,10 @@ public class SatelliteService {
 
     public void addMeasurements(String id, double radiation){
         logger.info("Adding measurements for satellite {}", id);
+        if(radiation < 0){
+            System.out.println("The radiation has to be greater than 0");
+            return;
+        }
         Satellite sat = repo.getSatelliteById(id);
         sat.addRadiationMeasurement(radiation);
     }
