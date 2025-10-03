@@ -1,6 +1,7 @@
 package com.sebastian.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import com.sebastian.enums.SatelliteStatus;
 
@@ -8,7 +9,7 @@ public class Satellite {
     private static int satelliteNum = 1;
     private String id = "SAT-00";
     private SatelliteStatus currentStatus;  
-    private LinkedList<Double> radiationHistory;
+    private List<Double> radiationHistory;
 
     public Satellite(){
         id = id+(satelliteNum++);
@@ -29,7 +30,7 @@ public class Satellite {
         this.currentStatus = currentStatus;
     }
 
-    public LinkedList<Double> getRadiationHistory() {
+    public List<Double> getRadiationHistory() {
         return radiationHistory;
     }
 
