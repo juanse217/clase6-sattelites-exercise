@@ -49,7 +49,7 @@ public class SatelliteService {
     public void changeStatus(String id, String status){
         logger.info("Changing status for satellite {}", id);
         Satellite sat = repo.getSatelliteById(id);
-        SatelliteStatus changedStatus = status.equalsIgnoreCase("Active") ? SatelliteStatus.ACTIVE : status.equalsIgnoreCase("Inactive") ? SatelliteStatus.INACTIVE : SatelliteStatus.MAINTENANCE;
+        SatelliteStatus changedStatus = status.equalsIgnoreCase("Active") ? SatelliteStatus.ACTIVE : status.equalsIgnoreCase("Inactive") ? SatelliteStatus.INACTIVE : status.equalsIgnoreCase("maintenance") ? SatelliteStatus.MAINTENANCE : SatelliteStatus.ERROR;
         sat.setCurrentStatus(changedStatus);
     }
 
