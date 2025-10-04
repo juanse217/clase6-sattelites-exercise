@@ -25,7 +25,7 @@ public class SatelliteRepositoryImpl implements ISatelliteRepository {
     }
 
     @Override
-    public Satellite getSatelliteById(String id) {
+    public Satellite getSatelliteById(String id) throws SatelliteNotFoundException{
         Optional<Satellite> foundSatellite = satellites.values().stream().filter(x -> x.getId().equals(id)).findFirst();
 
         return foundSatellite.orElseThrow(() -> new SatelliteNotFoundException("The satellite with the id " + id + " wasn't found"));

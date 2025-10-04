@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.sebastian.model.Satellite;
 import com.sebastian.service.SatelliteService;
+import com.sebastian.sharedExceptions.SatelliteNotFoundException;
 
 public class Menu {
     private SatelliteService service; 
@@ -11,7 +12,7 @@ public class Menu {
     public Menu(SatelliteService service){
         this.service = service;
     }
-    public  void showMenu(){
+    public  void showMenu() throws SatelliteNotFoundException{
         int decision = 0; 
         Scanner sc = new Scanner(System.in);
         String id = null;

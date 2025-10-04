@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.sebastian.enums.SatelliteStatus;
 import com.sebastian.model.Satellite;
 import com.sebastian.repository.ISatelliteRepository;
+import com.sebastian.sharedExceptions.SatelliteNotFoundException;
 
 public class SatelliteService {
     private ISatelliteRepository repo; 
@@ -24,13 +25,16 @@ public class SatelliteService {
         logger.info("Satellite succesfullyy added");
     }
 
-    public String consultStatus(String id){
+    public String consultStatus(String id) throws SatelliteNotFoundException{
         logger.info("Checking status");
         Satellite sat = repo.getSatelliteById(id);
+        if(sat == null){
+            throw new SatelliteNotFoundException("The satellite couldn't be fonud to check the status ");
+        }
         return sat.getCurrentStatus().toString();
     }
 
-    public void addMeasurements(String id, double radiation){
+    public void addMeasurements(String id, double radiation) throws SatelliteNotFoundException{
         logger.info("Adding measurements for satellite {}", id);
         if(radiation < 0){
             System.out.println("The radiation has to be greater than 0");
@@ -40,13 +44,13 @@ public class SatelliteService {
         sat.addRadiationMeasurement(radiation);
     }
 
-    public List<Double> getAllmeasurements(String id){
+    public List<Double> getAllmeasurements(String id) throws SatelliteNotFoundException{
         logger.info("Returning measurements for satellite {}", id);
         Satellite sat = repo.getSatelliteById(id);
         return sat.getRadiationHistory();
     }
 
-    public void changeStatus(String id, String status){
+    public void changeStatus(String id, String status) throws SatelliteNotFoundException{
         logger.info("Changing status for satellite {}", id);
         Satellite sat = repo.getSatelliteById(id);
         SatelliteStatus changedStatus = status.equalsIgnoreCase("Active") ? SatelliteStatus.ACTIVE : status.equalsIgnoreCase("Inactive") ? SatelliteStatus.INACTIVE : status.equalsIgnoreCase("maintenance") ? SatelliteStatus.MAINTENANCE : SatelliteStatus.ERROR;
